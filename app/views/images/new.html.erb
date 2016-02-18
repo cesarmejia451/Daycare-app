@@ -1,0 +1,14 @@
+<h4>Add a new image to a center</h4>
+<%= form_tag '/images', method: :post do %>
+
+  <div>
+    <%= label_tag :url %>
+    <%= text_field_tag :url %>
+  </div>
+  <div>
+  <%= label_tag :center %>
+  <%= collection_select :center, :center_id, Center.all, :id, :name %>
+</div>
+
+  <%= submit_tag "Submit" %>
+<% end %>
