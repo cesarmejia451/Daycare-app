@@ -2,6 +2,10 @@ class CentersController < ApplicationController
 
   def index
     @centers = Center.all 
+
+    if params[:program]
+      @centers = Program.find_by(name: params[:program]).centers
+    end
   end
 
   def show

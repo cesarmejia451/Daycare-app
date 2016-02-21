@@ -1,4 +1,3 @@
-<h1>Day Care Center show page will appear here</h1>
 <div class="col-md-6">
   <h2><%= @center.name %></h2>
   <h4><%= @center.address %></h4>
@@ -25,13 +24,35 @@
 <% @center.images.each do |image| %>
   <%= image_tag image.url, class: "img-responsive center-image" %>
     <% if current_user %>
-      <h6><%= link_to "Delete", "/images/:id" %></h6>
+      <h6><%= link_to "Delete", "/images/#{image.id}", method: :delete, data:{confirm: "Are you sure?"} %></h6>
     <% end %>
 <% end %> 
 
 <% if current_user %>
-    <h6><%= link_to "Add New Image", "/images/:id" %></h6>
+    <h6><%= link_to "Add New Image", "/images/new" %></h6>
 <% end %>
+
+<h4>Ask a Question</h4>
+<%= form_tag '/posts', method: :post do %>
+
+  <div>
+    <%= label_tag :Question %>
+    <%= text_field_tag :title %>
+  </div>
+  <%=hidden_field_tag :center_id, @center.id %>
+  <%= submit_tag "Submit" %>
+<% end %>
+<hr>
+
+<h4>Questions</h4>
+
+
+<% @center.posts.each do |post| %>
+  <%= post.title.capitalize %>
+  <br>
+<% end %>
+
+
 
 
 

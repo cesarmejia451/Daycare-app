@@ -37,7 +37,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Programs <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <% Program.all.each do |program| %>
-              <li><%= link_to program.name.titleize, "/center?program=#{program.name}" %></li>
+              <li><%= link_to program.name.titleize, "/centers?program=#{program.name}" %></li>
             <% end %>
             <li role="separator" class="divider"></li>
             <li><a href="/centers">Home</a></li>
