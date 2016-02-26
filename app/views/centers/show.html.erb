@@ -34,7 +34,6 @@
 
 <h4>Ask a Question</h4>
 <%= form_tag '/posts', method: :post do %>
-
   <div>
     <%= label_tag :Question %>
     <%= text_field_tag :title %>
@@ -45,7 +44,6 @@
 <hr>
 
 <h4>Questions</h4>
-
 
 <% @center.posts.each do |post| %>
   <%= post.title.capitalize %>

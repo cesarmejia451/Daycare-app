@@ -1,7 +1,7 @@
 class CentersController < ApplicationController
 
   def index
-    @centers = Center.all 
+    @centers = Daycare.all
 
     if params[:program]
       @centers = Program.find_by(name: params[:program]).centers
@@ -9,7 +9,7 @@ class CentersController < ApplicationController
   end
 
   def show
-    @center = Center.find(params[:id])
+    @center = Daycare.find(params[:id])
   end
 
   def search

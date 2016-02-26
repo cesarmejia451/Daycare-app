@@ -2,12 +2,10 @@
 
 
 <% @centers.each do |center| %>
-  <h4><a href="centers/<%= center.id %>"><%= center.name %></a></h4>
+  <h4><a href="centers/<%= center.id %>"><%= center.doing_business_as_name.titleize %></a></h4>
   <h5><%= center.address %></h5>
   <h5><%= center.city %>, <%= center.state %></h5>
   <h5><%= center.zip_code %></h5>
-
-  <h5><a href="<%= center.website %>">Company Website</a></h5>  
   <hr>
 <% end %>
 
