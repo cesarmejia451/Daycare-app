@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306152005) do
+ActiveRecord::Schema.define(version: 20160306204642) do
 
   create_table "center_programs", force: :cascade do |t|
     t.integer  "center_id",  limit: 4
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20160306152005) do
     t.string   "zip_code",    limit: 255
     t.string   "phone",       limit: 255
     t.text     "description", limit: 65535
-    t.string   "hours",       limit: 255
+    t.text     "hours",       limit: 65535
     t.string   "rates",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
