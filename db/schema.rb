@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306050857) do
+ActiveRecord::Schema.define(version: 20160306152005) do
 
   create_table "center_programs", force: :cascade do |t|
     t.integer  "center_id",  limit: 4
@@ -82,6 +82,8 @@ ActiveRecord::Schema.define(version: 20160306050857) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.text     "description", limit: 65535
+    t.integer  "user_id",     limit: 4
+    t.integer  "center_id",   limit: 4
   end
 
   create_table "tags", force: :cascade do |t|

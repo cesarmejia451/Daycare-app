@@ -1,13 +1,5 @@
 Rails.application.routes.draw do
   
-  get 'referrals/index'
-
-  get 'referrals/show'
-
-  get 'referrals/new'
-
-  get 'referrals/create'
-
   devise_for :users
   root 'centers#index' 
 
@@ -30,5 +22,10 @@ Rails.application.routes.draw do
   get '/comments/new' => 'comments#new'
   post '/comments' => 'comments#create'
   get 'comments/:id' => 'comments#show'
+
+  get '/referrals' => 'referrals#index'
+  get '/referrals/new' => 'referrals#new'
+  post '/referrals' => 'referrals#create'
+  get 'referrals/:id' => 'referrals#show'
 
 end

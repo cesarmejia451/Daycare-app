@@ -4,4 +4,5 @@ class Center < ActiveRecord::Base
   has_many :programs, through: :center_programs
 
   has_many :posts
+  has_many :referrals
 end

@@ -57,6 +57,24 @@
   <br>
 <% end %>
 
+<h4>Add a Referral</h4>
+<%= form_tag '/referrals', method: :post do %>
+  <div>
+    <%= label_tag :Feedback %>
+    <%= text_field_tag :description %>
+  </div>
+  <%=hidden_field_tag :center_id, @center.id %>
+  <%= submit_tag "Submit" %>
+<% end %>
+<hr>
+
+<h4><%= @center.name.titleize %> Referrals</h4>
+<% @center.referrals.each do |referral| %>
+  <%= referral.description.capitalize %><br>
+<% end %>
+
+<hr>
+
 
 
 
