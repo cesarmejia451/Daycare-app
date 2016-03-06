@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225010332) do
+ActiveRecord::Schema.define(version: 20160306050857) do
 
   create_table "center_programs", force: :cascade do |t|
     t.integer  "center_id",  limit: 4
@@ -21,21 +21,20 @@ ActiveRecord::Schema.define(version: 20160225010332) do
   end
 
   create_table "centers", force: :cascade do |t|
-    t.string   "name",         limit: 255
-    t.string   "address",      limit: 255
-    t.string   "city",         limit: 255
-    t.string   "state",        limit: 255
-    t.string   "website",      limit: 255
-    t.string   "zip_code",     limit: 255
-    t.string   "phone",        limit: 255
-    t.text     "description",  limit: 65535
-    t.string   "hours",        limit: 255
-    t.string   "rates",        limit: 255
+    t.string   "name",        limit: 255
+    t.string   "address",     limit: 255
+    t.string   "city",        limit: 255
+    t.string   "state",       limit: 255
+    t.string   "website",     limit: 255
+    t.string   "zip_code",    limit: 255
+    t.string   "phone",       limit: 255
+    t.text     "description", limit: 65535
+    t.string   "hours",       limit: 255
+    t.string   "rates",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "lat",          limit: 255
-    t.string   "long",         limit: 255
-    t.string   "neighborhood", limit: 255
+    t.float    "latitude",    limit: 24
+    t.float    "longitude",   limit: 24
   end
 
   create_table "comments", force: :cascade do |t|
@@ -77,6 +76,12 @@ ActiveRecord::Schema.define(version: 20160225010332) do
     t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "referrals", force: :cascade do |t|
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.text     "description", limit: 65535
   end
 
   create_table "tags", force: :cascade do |t|

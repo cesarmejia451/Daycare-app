@@ -1,11 +1,18 @@
+<div ng-app="app">
+  {{ 1 + 1 }}
+</div>
+
 <h1>Day Care Listing will go here</h1>
 
 
 <% @centers.each do |center| %>
-  <h4><a href="centers/<%= center.id %>"><%= center.doing_business_as_name.titleize %></a></h4>
+  <h4><a href="centers/<%= center.id %>"><%= center.name.titleize %></a></h4>
   <h5><%= center.address %></h5>
   <h5><%= center.city %>, <%= center.state %></h5>
   <h5><%= center.zip_code %></h5>
+  <h5><%= center.latitude %></h5>
+  <h5><%= center.longitude %></h5>
+
   <hr>
 <% end %>
 

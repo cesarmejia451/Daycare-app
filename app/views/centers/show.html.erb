@@ -47,6 +47,13 @@
 
 <% @center.posts.each do |post| %>
   <%= post.title.capitalize %>
+  <%= form_tag '/comments', method: :post do %>
+  <div>
+    <%= label_tag :Answer %>
+    <%= text_field_tag :field %>
+  </div>
+  <%= submit_tag "Answer" %>
+<% end %>
   <br>
 <% end %>
 
