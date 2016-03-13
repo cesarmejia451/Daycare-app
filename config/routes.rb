@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/centers' => 'centers#index'
   get '/centers/:id' => 'centers#show'
   post '/search' => 'centers#search'
+  get '/api_search' => 'centers#api_search'
 
   get '/images' => 'images#index'
   get '/images/new' => 'images#new'

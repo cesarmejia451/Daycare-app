@@ -17,5 +17,10 @@ class CentersController < ApplicationController
     
     render :index
   end
+
+  def api_search
+     @centers = Center.where("name LIKE ? OR zip_code LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+     render json: @centers
+  end
 end
 

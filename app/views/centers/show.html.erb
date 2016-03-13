@@ -4,14 +4,43 @@
   <h4><%= @center.city %>, <%= @center.state %></h4>
   <h4><%= @center.zip_code %></h4>
   <h4><%= @center.phone %></h4>
+
+  <p hidden id="lat"><%= @center.latitude %></p>
+  <p hidden id="lng"><%= @center.longitude %></p>
+
+
+
+
   <h4><a href="<%= @center.website %>">Company Website</a></h4>
   <hr>
   <h4>Programs: <% @center.programs.each do |program| %>
     <%= program.name.capitalize %>
   <% end %></h4>
   <hr>
+
+  <script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq9Tx0RGOiVtBVGAZq8E1siFLAzplyWDo">
+  </script>
+
+  <div ng-controller="centerCtrl" ng-init="setupShow()">
+  
+  <style>
+    #map {
+      height: 500px;
+      width: 500px;
+      margin: 100px;
+      padding: 100px;
+    }
+  </style>
+
+  <div id="map"></div>
+
+
+
   <h4><b>Description: </b><%= @center.description %></h4>
-  <h4><b>Hours: </b><%= @center.hours %></h4>
+  <h4><b>Hours: </b><%= @center.hours %>
+   
+
 
   <hr>
   <% if current_user %>
@@ -19,6 +48,14 @@
     <h4>Action to Post a Review</h4>
   <% end %>
 </div>
+
+
+
+
+
+
+
+
 
 <% @center.images.each do |image| %>
   <%= image_tag image.url, class: "img-responsive center-image" %>
