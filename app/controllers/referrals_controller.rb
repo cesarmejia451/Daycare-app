@@ -11,9 +11,19 @@ class ReferralsController < ApplicationController
   end
 
   def create
-    @referral = Referral.create({description: params[:description], user_id: current_user.id, center_id: params["center_id"]})
-    center_id = @referral.center_id
-    redirect_to "/centers/#{center_id}"
+    @referral = Referral.new({description: params[:description], user_id: current_user.id, center_id: params["center_id"]})
+
+    if params[:description].empty?
+      flash[:warning] = "You must enter text to complete review"
+      redirect_to :back
+
+    else @referral.save
+      center_id = @referral.center_id
+      flash[:success] = "Your referral has been added!!!"
+      redirect_to "/centers/#{center_id}"
+    end
+
+  
   end
 
 end

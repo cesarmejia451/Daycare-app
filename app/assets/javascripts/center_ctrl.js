@@ -4,21 +4,26 @@
   angular.module("app").controller("centerCtrl", function($scope, $http){
     
     var map;
+    var markers = []
 
     function addMarker(center){
       if(!center.latitude || !center.longitude){
         return;
-      }
-      return new google.maps.Marker({
+      } 
+
+      var marker = new google.maps.Marker({
         position: {lat: center.latitude, lng: center.longitude},
         map: map,
         title: "Daycare Playground"
       });
 
+      markers.push(marker);
+      return marker;
+
     };
 
     function initMap(){
-      var chicago = {lat: 41.9105, lng: -87.6847};
+      var chicago = {lat: 41.8405, lng: -87.6750};
       map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: chicago
@@ -66,12 +71,79 @@
       });
     };
 
+
+
     $scope.search = function() {
       $http.get('/api_search.json?search=' + $scope.searchValue).then(function(response){
-        $scope.centers = response.data;
-        // initMap()
+          clearMarkers()
+          $scope.centers = response.data;
+          initMapSearch()
       });
     }
+
+    // Sets the map on all markers in the array.
+      function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+      }
+
+      // Removes the markers from the map, but keeps them in the array.
+      function clearMarkers() {
+        setMapOnAll(null);
+        markers = []
+      }
+
+
+     function initMapSearch(){
+      // var latitude = document.getElementById('lat').innerHTML;
+      // var longitude = document.getElementById('lng').innerHTML;
+      // var results = {lat: Number(latitude), lng: Number(longitude) };
+    
+      // map = new google.maps.Map(document.getElementById('map'), {
+      //   zoom: 15,
+      //   center: results
+      // });
+      var bounds = new google.maps.LatLngBounds();
+      
+      for (var i = 0; i < $scope.centers.length; i++) {
+        var center = $scope.centers[i];
+        var marker = addMarker(center); 
+  
+        if(marker){
+          bounds.extend(marker.getPosition())
+        }
+        (function(m) {
+          if(m){
+             var contentString = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h4 id="firstHeading" class="firstHeading"><a href="/centers/'+center.id+'">'+center.name+'</h4>'+
+              '<div id="bodyContent">'+
+              '<p>'+center.phone+'</p>'+
+              '<p><a href="'+center.website+'"">Company Website</a>' +
+              '</p>'+
+              '</div>'+
+              '</div>';
+
+            var infowindow = new google.maps.InfoWindow({
+              content: contentString,
+              maxWidth: 200
+            });
+
+            m.addListener('mouseover', function() {
+              infowindow.open(map, m);
+            });
+            m.addListener('click', function() {
+              infowindow.close(map, m);
+            });
+            
+          }
+        }(marker))
+      };
+      map.getBounds(bounds);
+    }
+
 
     var map2;
 

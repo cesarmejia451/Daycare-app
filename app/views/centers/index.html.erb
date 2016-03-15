@@ -5,7 +5,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq9Tx0RGOiVtBVGAZq8E1siFL
 
 <div ng-controller="centerCtrl" ng-init="setup()">
 <input type="text" ng-model="searchValue">
-<button ng-click="search()"> SEARCH</button>
+<button ng-click="search()"> Search </button>
   
 <style>
   #map {
@@ -19,15 +19,13 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq9Tx0RGOiVtBVGAZq8E1siFL
 <div id="map"></div>
 
 
-<h1>Day Care Listing will go here</h1>
-
-<div ng-repeat="c in centers">
-  <h4><a href="centers/{{c.id}}">{{c.business_name || c.name}}</a></h4>
-  <h5>{{c.address}}</h5>
-  <h5>{{c.city}}, {{c.state}}</h5>
-  <h5>{{c.zip_code}}</h5>
-  <h5>{{c.latitude}}</h5>
-  <h5>{{c.longitude}}</h5>
+<div ng-repeat="center in centers">
+  <h4><a href="centers/{{center.id}}">{{center.business_name || center.name}}</a></h4>
+  <h5>{{center.address}}</h5>
+  <h5>{{center.city}}, {{center.state}}</h5>
+  <h5>{{center.zip_code}}</h5>
+  <h5>{{center.latitude}}</h5>
+  <h5>{{center.longitude}}</h5>
   <hr>
 </div>
 
