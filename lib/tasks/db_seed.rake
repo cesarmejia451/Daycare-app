@@ -35,15 +35,18 @@ task update_daycare_db: :environment do
       place = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{place_id}&key=AIzaSyCAORTL2oMfcfEqz4ttarDXfrGhIOvDJL0  
 ").body["result"] 
       opening_hours = place["opening_hours"]
-      # weekday_text = nil
       weekday_text = opening_hours["weekday_text"] if opening_hours
+
+      photos = place["photos"]
+      photo_reference = photos[0]["photo_reference"] if photos
+
 
       center.update(
         name: place["name"],
         website: place["website"],
         phone: place["formatted_phone_number"],
         hours: weekday_text,
-        description: place["photos"],
+        description: photo_reference,
         latitude: place["geometry"]["location"]["lat"],
         longitude: place["geometry"]["location"]["lng"],
         )

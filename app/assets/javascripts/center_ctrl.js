@@ -4,30 +4,34 @@
   angular.module("app").controller("centerCtrl", function($scope, $http){
     
     var map;
-    var markers = []
+    var markers = [];
+
 
     function addMarker(center){
       if(!center.latitude || !center.longitude){
         return;
       } 
 
+      var image = "https://bfb89515afffff903eb7a381cf5e58e24a620c1b-www.googledrive.com/host/0B09DNIgcGom_b1hxS2JnYXBiWFk/daycare.png"
       var marker = new google.maps.Marker({
         position: {lat: center.latitude, lng: center.longitude},
         map: map,
+        icon: image,
         title: "Daycare Playground"
       });
 
       markers.push(marker);
       return marker;
-
+      
     };
 
     function initMap(){
       var chicago = {lat: 41.8405, lng: -87.6750};
       map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10,
+        zoom: 11,
         center: chicago
       });
+
       var bounds = new google.maps.LatLngBounds();
         
       for (var i = 0; i < $scope.centers.length; i++) {
@@ -43,7 +47,6 @@
               '</div>'+
               '<h4 id="firstHeading" class="firstHeading"><a href="centers/'+center.id+'">'+center.business_name+'</h4>'+
               '<div id="bodyContent">'+
-              '<p>'+center.phone+'</p>'+
               '<p><a href="'+center.website+'"">Company Website</a>' +
               '</p>'+
               '</div>'+
@@ -71,8 +74,6 @@
       });
     };
 
-
-
     $scope.search = function() {
       $http.get('/api_search.json?search=' + $scope.searchValue).then(function(response){
           clearMarkers()
@@ -96,14 +97,8 @@
 
 
      function initMapSearch(){
-      // var latitude = document.getElementById('lat').innerHTML;
-      // var longitude = document.getElementById('lng').innerHTML;
-      // var results = {lat: Number(latitude), lng: Number(longitude) };
-    
-      // map = new google.maps.Map(document.getElementById('map'), {
-      //   zoom: 15,
-      //   center: results
-      // });
+
+
       var bounds = new google.maps.LatLngBounds();
       
       for (var i = 0; i < $scope.centers.length; i++) {

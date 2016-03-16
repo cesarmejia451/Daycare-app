@@ -4,6 +4,7 @@
   angular.module("app").controller("centerCtrlShow", function($scope, $http){
     
     var map;
+    var image = "https://bfb89515afffff903eb7a381cf5e58e24a620c1b-www.googledrive.com/host/0B09DNIgcGom_b1hxS2JnYXBiWFk/daycare.png";
     var markers = []
 
     function addMarkerShow(center){
@@ -13,6 +14,7 @@
       return new google.maps.Marker({
         position: {lat: center.latitude, lng: center.longitude },
         map: map,
+        icon: image,
         title: "Daycare Playground"
       });
 

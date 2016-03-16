@@ -6,14 +6,6 @@ class Center < ActiveRecord::Base
   has_many :posts
   has_many :referrals
 
-  # def hours
-  #   times = @center.hours 
-  #   times.each do |time| 
-  #     p time
-  #   end
-  
-  # end
-
 
 end
 
