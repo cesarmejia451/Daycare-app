@@ -7,64 +7,374 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<div class="wrapper">
+		<!--=== Header ===-->
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/centers">DayCare App</a>
+		<!--=== End Header ===-->
+    <div ng-app="app">
+      
+      <%= yield %>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <%= form_tag "/search", class: "navbar-form navbar-right" do %>
-        <div class="form-group">
-          <%= text_field_tag :search, nil, placeholder: "Search Centers", class: "form-control" %>
-        </div>
-        <%= submit_tag "Search", class: "btn btn-default" %>
-      <% end %>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Sign Up", "/users/sign_up" unless user_signed_in? %></li>
-        <li><%= link_to "Sign In", "/users/sign_in" unless user_signed_in? %></li>
-        <li><%= link_to "Sign Out", "/users/sign_out", method: :delete if user_signed_in? %></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Programs <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <% Program.all.each do |program| %>
-              <li><%= link_to program.name.titleize, "/centers?program=#{program.name}" %></li>
-            <% end %>
-            <li role="separator" class="divider"></li>
-            <li><a href="/centers">Home</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
 
-<div class="container">
+		<!--=== Slider ===-->
+		 <div class="slider-inner">
+			<div id="da-slider" class="da-slider">
+				<div class="da-slide">
+					<h2><i>CLEAN &amp; FRESH</i> <br /> <i>FULLY RESPONSIVE</i> <br /> <i>DESIGN</i></h2>
+					<p><i>Lorem ipsum dolor amet</i> <br /> <i>tempor incididunt ut</i> <br /> <i>veniam omnis </i></p>
+					<div class="da-img"><img class="img-responsive" src="assets/plugins/parallax-slider/assets/theme/1.png" alt=""></div>
+				</div>
+				<div class="da-slide">
+					<h2><i>RESPONSIVE VIDEO</i> <br /> <i>SUPPORT AND</i> <br /> <i>MANY MORE</i></h2>
+					<p><i>Lorem ipsum dolor amet</i> <br /> <i>tempor incididunt ut</i></p>
+					<div class="da-img">
+						<iframe src="http://player.vimeo.com/video/47911018" width="530" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+					</div>
+				</div>
+				<div class="da-slide">
+					<h2><i>USING BEST WEB</i> <br /> <i>SOLUTIONS WITH</i> <br /> <i>HTML5/CSS3</i></h2>
+					<p><i>Lorem ipsum dolor amet</i> <br /> <i>tempor incididunt ut</i> <br /> <i>veniam omnis </i></p>
+					<div class="da-img"><img src="assets/plugins/parallax-slider/assets/theme/html5andcss3.png" alt="image01" /></div>
+				</div>
+				<div class="da-arrows">
+					<span class="da-arrows-prev"></span>
+					<span class="da-arrows-next"></span>
+				</div>
+			</div>
+		</div> --><!--/slider
+		<!--=== End Slider ===-->
 
-  <% flash.each do |name, message| %>
-    <div class="alert alert-<%= name == "alert" || name == "notice" ? "warning" : name %> alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong></strong> <%= message %>
-    </div>
-  <% end %>
-</div>
+		<!--=== Purchase Block ===-->
+		<div class="purchase">
+			<div class="container overflow-h">
+				<div class="row">
+					<div class="col-md-9 animated fadeInLeft">
+						<span>Unify is a clean and fully responsive incredible Template.</span>
+						<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi  vehicula sem ut volutpat. Ut non libero magna fusce condimentum eleifend enim a feugiat corrupti quos.</p>
+					</div>
+					<div class="col-md-3 btn-buy animated fadeInRight">
+						<a href="#" class="btn-u btn-u-lg"><i class="fa fa-cloud-download"></i> Download Now</a>
+					</div>
+				</div>
+			</div>
+		</div><!--/row-->
+		<!-- End Purchase Block -->
 
-<div ng-app="app">
-  <%= yield %>  
-</div>
+		<!--=== Content Part ===-->
+		<div class="container content-sm">
+			<!-- Service Blocks -->
+			<div class="row margin-bottom-30">
+				<div class="col-md-4">
+					<div class="service">
+						<i class="fa fa-compress service-icon"></i>
+						<div class="desc">
+							<h4>Fully Responsive</h4>
+							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus etiam sem...</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="service">
+						<i class="fa fa-cogs service-icon"></i>
+						<div class="desc">
+							<h4>HTML5 + CSS3</h4>
+							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus etiam sem...</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="service">
+						<i class="fa fa-rocket service-icon"></i>
+						<div class="desc">
+							<h4>Launch Ready</h4>
+							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus etiam sem...</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End Service Blokcs -->
 
+			<!-- Recent Works -->
+			<div class="headline"><h2>Recent Works</h2></div>
+			<div class="row margin-bottom-20">
+				<div class="col-md-3 col-sm-6">
+					<div class="thumbnails thumbnail-style thumbnail-kenburn">
+						<div class="thumbnail-img">
+							<div class="overflow-hidden">
+								<img class="img-responsive" src="assets/assets/theme/main/img1.jpg" alt="">
+							</div>
+							<a class="btn-more hover-effect" href="#">read more +</a>
+						</div>
+						<div class="caption">
+							<h3><a class="hover-effect" href="#">Project One</a></h3>
+							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="thumbnails thumbnail-style thumbnail-kenburn">
+						<div class="thumbnail-img">
+							<div class="overflow-hidden">
+								<img class="img-responsive" src="assets/assets/theme/main/img12.jpg" alt="">
+							</div>
+							<a class="btn-more hover-effect" href="#">read more +</a>
+						</div>
+						<div class="caption">
+							<h3><a class="hover-effect" href="#">Project Two</a></h3>
+							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="thumbnails thumbnail-style thumbnail-kenburn">
+						<div class="thumbnail-img">
+							<div class="overflow-hidden">
+								<img class="img-responsive" src="assets/assets/theme/main/img3.jpg" alt="">
+							</div>
+							<a class="btn-more hover-effect" href="#">read more +</a>
+						</div>
+						<div class="caption">
+							<h3><a class="hover-effect" href="#">Project Three</a></h3>
+							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="thumbnails thumbnail-style thumbnail-kenburn">
+						<div class="thumbnail-img">
+							<div class="overflow-hidden">
+								<img class="img-responsive" src="assets/assets/theme/main/img17.jpg" alt="">
+							</div>
+							<a class="btn-more hover-effect" href="#">read more +</a>
+						</div>
+						<div class="caption">
+							<h3><a class="hover-effect" href="#">Project Four</a></h3>
+							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End Recent Works -->
 
+			<!-- Info Blokcs -->
+			<div class="row margin-bottom-30">
+				<!-- Welcome Block -->
+				<div class="col-md-8 md-margin-bottom-40">
+					<div class="headline"><h2>Welcome To Unify</h2></div>
+					<div class="row">
+						<div class="col-sm-4">
+							<img class="img-responsive margin-bottom-20" src="assets/assets/theme/main/img18.jpg" alt="">
+						</div>
+						<div class="col-sm-8">
+							<p>Unify is an incredibly beautiful responsive Bootstrap Template for corporate and creative professionals. It works on all major web browsers, tablets and phone.</p>
+							<ul class="list-unstyled margin-bottom-20">
+								<li><i class="fa fa-check color-green"></i> Donec id elit non mi porta gravida</li>
+								<li><i class="fa fa-check color-green"></i> Corporate and Creative</li>
+								<li><i class="fa fa-check color-green"></i> Responsive Bootstrap Template</li>
+								<li><i class="fa fa-check color-green"></i> Corporate and Creative</li>
+							</ul>
+						</div>
+					</div>
 
+					<blockquote class="hero-unify">
+						<p>Award winning digital agency. We bring a personal and effective approach to every project we work on, which is why. Unify is an incredibly beautiful responsive Bootstrap Template for corporate professionals.</p>
+						<small>CEO, Jack Bour</small>
+					</blockquote>
+				</div><!--/col-md-8-->
 
-</body>
-</html>
+				<!-- Latest Shots -->
+				<div class="col-md-4">
+					<div class="headline"><h2>Latest Shots</h2></div>
+					<div id="myCarousel" class="carousel slide carousel-v1">
+						<div class="carousel-inner">
+							<div class="item active">
+								<img src="assets/assets/theme/main/img4.jpg" alt="">
+								<div class="carousel-caption">
+									<p>Facilisis odio, dapibus ac justo acilisis gestinas.</p>
+								</div>
+							</div>
+							<div class="item">
+								<img src="assets/assets/theme/main/img2.jpg" alt="">
+								<div class="carousel-caption">
+									<p>Cras justo odio, dapibus ac facilisis into egestas.</p>
+								</div>
+							</div>
+							<div class="item">
+								<img src="assets/assets/theme/main/img24.jpg" alt="">
+								<div class="carousel-caption">
+									<p>Justo cras odio apibus ac afilisis lingestas de.</p>
+								</div>
+							</div>
+						</div>
 
+						<div class="carousel-arrow">
+							<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+								<i class="fa fa-angle-left"></i>
+							</a>
+							<a class="right carousel-control" href="#myCarousel" data-slide="next">
+								<i class="fa fa-angle-right"></i>
+							</a>
+						</div>
+					</div>
+				</div><!--/col-md-4-->
+			</div>
+			<!-- End Info Blokcs -->
 
+			<!-- Owl Clients v1 -->
+			<div class="headline"><h2>Our Clients</h2></div>
+			<div class="owl-clients-v1">
+				<div class="item">
+					<%= image_tag "footer_v1.jpg" %>
+				</div>
+				<div class="item">
+					<%= image_tag "footer_v2.jpg" %>
+				</div>
+				<div class="item">
+					<%= image_tag "footer_v3.jpg" %>
+				</div>
+				<div class="item">
+					<%= image_tag "footer_v4.jpg" %>
+				</div>
+				<div class="item">
+					<%= image_tag "footer_v5.jpg" %>
+				</div>
+				<div class="item">
+					<%= image_tag "footer_v6.jpg" %>
+				</div>
+				<div class="item">
+					<%= image_tag "footer_v7.jpg" %>
+				</div>
+				<div class="item">
+					<%= image_tag "footer_v8.jpg" %>
+				</div>
+			</div>
+			<!-- End Owl Clients v1 -->
+		</div><!--/container-->
+		<!-- End Content Part -->
+
+		<!--=== Footer Version 1 ===-->
+		<div class="footer-v5">
+			<div class="footer">
+				<div class="container">
+					<div class="row">
+						<!-- About -->
+						<div class="col-md-3 md-margin-bottom-40">
+							<a href="/centers"><img id="logo-footer" class="footer-logo" src="https://bfb89515afffff903eb7a381cf5e58e24a620c1b-www.googledrive.com/host/0B09DNIgcGom_b1hxS2JnYXBiWFk/Drawing.png" alt="Logo" height="50" width="100"></a>
+              <p></p>
+							<p>Daycare Playground is an online listing of all daycare and early learning centers in Chicago, IL. Parents can search daycare centers for their children with ease!</p>
+
+						</div><!--/col-md-3-->
+						<!-- End About -->
+
+						<!-- Latest -->
+						<div class="col-md-3 md-margin-bottom-40">
+							<div class="posts">
+								<div class="headline"><h2>Latest Posts</h2></div>
+								<ul class="list-unstyled latest-list">
+									<li>
+										<a href="#">Incredible content</a>
+										<small>May 8, 2014</small>
+									</li>
+									<li>
+										<a href="#">Best shoots</a>
+										<small>June 23, 2014</small>
+									</li>
+									<li>
+										<a href="#">New Terms and Conditions</a>
+										<small>September 15, 2014</small>
+									</li>
+								</ul>
+							</div>
+						</div><!--/col-md-3-->
+						<!-- End Latest -->
+
+						<!-- Link List -->
+						<div class="col-md-3 md-margin-bottom-40">
+							<div class="headline"><h2>Useful Links</h2></div>
+							<ul class="list-unstyled link-list">
+								<li><a href="#">About us</a><i class="fa fa-angle-right"></i></li>
+								<li><a href="#">Portfolio</a><i class="fa fa-angle-right"></i></li>
+								<li><a href="#">Latest jobs</a><i class="fa fa-angle-right"></i></li>
+								<li><a href="#">Community</a><i class="fa fa-angle-right"></i></li>
+								<li><a href="#">Contact us</a><i class="fa fa-angle-right"></i></li>
+							</ul>
+						</div><!--/col-md-3-->
+						<!-- End Link List -->
+
+						<!-- Address -->
+						<div class="col-md-3 map-img md-margin-bottom-40">
+							<div class="headline"><h2>Contact Us</h2></div>
+							<address class="md-margin-bottom-40">
+								25, Lorem Lis Street, Orange <br />
+								California, US <br />
+								Phone: 800 123 3456 <br />
+								Fax: 800 123 3456 <br />
+								Email: <a href="mailto:info@anybiz.com" class="">info@anybiz.com</a>
+							</address>
+						</div><!--/col-md-3-->
+						<!-- End Address -->
+					</div>
+				</div>
+			</div><!--/footer-->
+
+			<div class="copyright">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6">
+							<p>
+								2016 &copy; All Rights Reserved.
+								<a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+							</p>
+						</div>
+
+						<!-- Social Links -->
+						<div class="col-md-6">
+							<ul class="footer-socials list-inline">
+								<li>
+									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+										<i class="fa fa-facebook"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Skype">
+										<i class="fa fa-skype"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+										<i class="fa fa-google-plus"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+										<i class="fa fa-linkedin"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest">
+										<i class="fa fa-pinterest"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+										<i class="fa fa-twitter"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dribbble">
+										<i class="fa fa-dribbble"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<!-- End Social Links -->
+					</div>
+				</div>
+			</div><!--/copyright-->
+		</div>
+		<!--=== End Footer Version 1 ===-->
+	</div><!--/wrapper-->
+
+	</body>
+	</html>

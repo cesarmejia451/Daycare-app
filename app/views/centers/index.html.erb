@@ -2,31 +2,32 @@
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq9Tx0RGOiVtBVGAZq8E1siFLAzplyWDo">
 </script>
 
-
 <div ng-controller="centerCtrl" ng-init="setup()">
-<input type="text" ng-model="searchValue">
-<button ng-click="search()"> Search </button>
-  
-<style>
-  #map {
-    height: 500px;
-    width: 1000px;
-    margin: 100px;
-    padding: 50px;
-  }
-</style>
+  <%= render "shared/header" %>
 
-<div id="map"></div>
+  <input type="text" >
+  <button > Search </button>
+    
+  <style>
+    #map {
+      height: 700px;
+      width: 1075px;
+      margin: 100px;
+      padding: 25px;
+    }
+  </style>
+
+  <div id="map"></div>
 
 
-<div ng-repeat="center in centers">
-  <h4><a href="centers/{{center.id}}">{{center.business_name || center.name}}</a></h4>
-  <h5>{{center.address}}</h5>
-  <h5>{{center.city}}, {{center.state}}</h5>
-  <h5>{{center.zip_code}}</h5>
-  <h5>{{center.latitude}}</h5>
-  <h5>{{center.longitude}}</h5>
-  <hr>
-</div>
+  <div ng-repeat="center in centers">
+    <h4><a href="centers/{{center.id}}">{{center.business_name || center.name}}</a></h4>
+    <h5>{{center.address}}</h5>
+    <h5>{{center.city}}, {{center.state}}</h5>
+    <h5>{{center.zip_code}}</h5>
+    <h5>{{center.latitude}}</h5>
+    <h5>{{center.longitude}}</h5>
+    <hr>
+  </div>
 
 </div>

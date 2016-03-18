@@ -32,6 +32,16 @@
         center: chicago
       });
 
+      var styles = [
+          {
+            stylers: [
+              { hue: "#00ffe6" },
+              { saturation: -20 }
+            ]
+          }
+        ];
+
+
       var bounds = new google.maps.LatLngBounds();
         
       for (var i = 0; i < $scope.centers.length; i++) {
@@ -49,12 +59,13 @@
               '<div id="bodyContent">'+
               '<p><a href="'+center.website+'"">Company Website</a>' +
               '</p>'+
+              '<img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%= @center.description %>&key=AIzaSyDKyni-YC-myfYUxeOvMrNyx_TEf09FLAk" class="img-thumbnail" alt="Cinque Terre" width="200" height="200">'+
               '</div>'+
               '</div>';
 
             var infowindow = new google.maps.InfoWindow({
               content: contentString,
-              maxWidth: 200
+              maxWidth: 300
             });
 
             m.addListener('click', function() {

@@ -10,6 +10,34 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require theme/app
+ *= require theme/docs
+ *= require theme/prism
+ *= require theme/line-icons
+ *= require theme/style
+ *= require theme/header-default-centered.css
+ *= require theme/header-default-rtl.css
+ *= require theme/header-default.css
+ *= require theme/header-v1.css
+ *= require theme/header-v2.css
+ *= require theme/header-v3.css
+ *= require theme/header-v4-centered-1.css
+ *= require theme/header-v4-centered.css
+ *= require theme/header-v4.css
+ *= require theme/header-v5.css
+ *= require theme/header-v6.css
+ *= require theme/header-v7.css
+ *= require theme/header-v8.css
+ *= require theme/footer-default.css
+ *= require theme/footer-v1.css
+ *= require theme/footer-v2.css
+ *= require theme/footer-v3.css
+ *= require theme/footer-v4.css
+ *= require theme/footer-v5.css
+ *= require theme/footer-v6.css
+ *= require theme/footer-v7.css
+ *= require theme/footer-v8.css
+
  *= require_tree .
  *= require_self
  */

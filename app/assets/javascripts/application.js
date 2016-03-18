@@ -12,7 +12,12 @@
 //
 //= require jquery
 //= require bootstrap-sprockets
+//= require theme/themeApp
 //= require jquery_ujs
 //= require angular
 //= require app
 //= require_tree .
+
+$(document).on("ready", function () {
+  App.init();
+})

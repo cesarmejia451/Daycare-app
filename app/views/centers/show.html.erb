@@ -1,114 +1,125 @@
-<div class="col-md-6">
-  <h2><%= @center.name %></h2>
-  <h4><%= @center.address %></h4>
-  <h4><%= @center.city %>, <%= @center.state %></h4>
-  <h4><%= @center.zip_code %></h4>
-  <h4><%= @center.phone %></h4>
+<div id="centerShow">
+  <%= render "shared/header" %>
 
-  <p hidden id="lat"><%= @center.latitude %></p>
-  <p hidden id="lng"><%= @center.longitude %></p>
+  <div class="col-md-6">
+    <h2><%= @center.name %></h2>
+    <h4><%= @center.address %></h4>
+    <h4><%= @center.city %>, <%= @center.state %></h4>
+    <h4><%= @center.zip_code %></h4>
+    <h4><%= @center.phone %></h4>
 
-  <h4><a href="<%= @center.website %>">Company Website</a></h4>
-  <hr>
-  <h4>Programs: <% @center.programs.each do |program| %>
-    <%= program.name.capitalize %>
-  <% end %></h4>
-  <hr>
+    <p hidden id="lat"><%= @center.latitude %></p>
+    <p hidden id="lng"><%= @center.longitude %></p>
 
-  <script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq9Tx0RGOiVtBVGAZq8E1siFLAzplyWDo">
-  </script>
+    <h4><a href="<%= @center.website %>">Company Website</a></h4>
+    <hr>
+    <h4>Programs: <% @center.programs.each do |program| %>
+      <%= program.name.capitalize %>
+    <% end %></h4>
+    <hr>
 
-  <div ng-controller="centerCtrlShow" ng-init="setupShow()">
-  
-  <style>
-    #map {
-      height: 500px;
-      width: 500px;
-      margin: 100px;
-      padding: 100px;
-    }
-  </style>
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq9Tx0RGOiVtBVGAZq8E1siFLAzplyWDo">
+    </script>
 
-  <div id="map"></div>
+    <div ng-controller="centerCtrlShow" ng-init="setupShow()">
+    
+    <style>
+      #map {
+        height: 500px;
+        width: 500px;
+        margin: 100px;
+        padding: 100px;
+      }
+    </style>
 
-
-
-  <h4><b>Description: </b><%= @center.description %></h4>
-  <h4><b>Hours: </b><%= @center.hours %>
-  <
-  
-
-  <hr>
-  <% if current_user %>
-    <h4>Action to Submit a Question</h4>
-    <h4>Action to Post a Review</h4>
-  <% end %>
-</div>
+    <div id="map"></div>
 
 
 
+    <h4><b>Image: </b><img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%= @center.description %>&key=AIzaSyDKyni-YC-myfYUxeOvMrNyx_TEf09FLAk" class="img-rounded" alt="Cinque Terre" width="400" height="400"></h4>
+
+    <h4><b>Hours:</b>
 
 
 
-
-
-
-<% @center.images.each do |image| %>
-  <%= image_tag image.url, class: "img-responsive center-image" %>
-    <% if current_user %>
-      <h6><%= link_to "Delete", "/images/#{image.id}", method: :delete, data:{confirm: "Are you sure?"} %></h6>
+    <% @center.hours.split(",").each do |hour| %>
+      <p><%= hour[2..-2].gsub(/"/, "") %></p>
     <% end %>
-<% end %> 
+    
 
-<% if current_user %>
-    <h6><%= link_to "Add New Image", "/images/new" %></h6>
-<% end %>
-
-<h4>Ask a Question</h4>
-<%= form_tag '/posts', method: :post do %>
-  <div>
-    <%= label_tag :Question %>
-    <%= text_field_tag :title %>
+    <hr>
+    <% if current_user %>
+      <h4>Action to Submit a Question</h4>
+      <h4>Action to Post a Review</h4>
+    <% end %>
   </div>
-  <%=hidden_field_tag :center_id, @center.id %>
-  <%= submit_tag "Submit" %>
-<% end %>
-<hr>
-
-<h4>Questions</h4>
-
-<% @center.posts.each do |post| %>
-  <%= post.title.capitalize %>
-  <%= form_tag '/comments', method: :post do %>
-  <div>
-    <%= label_tag :Answer %>
-    <%= text_field_tag :field %>
-  </div>
-  <%= submit_tag "Answer" %>
-<% end %>
-  <br>
-<% end %>
-
-<h4>Add a Referral</h4>
-<%= form_tag '/referrals', method: :post do %>
-  <div>
-    <%= label_tag :Feedback %>
-    <%= text_field_tag :description %>
-  </div>
-  <%=hidden_field_tag :center_id, @center.id %>
-  <%= submit_tag "Submit" %>
-<% end %>
-<hr>
-
-<h4><%= @center.name.titleize %> Referrals <%= @center.referrals.length %></h4>
-<% @center.referrals.each do |referral| %>
-  <%= referral.description.capitalize %><br>
-<% end %>
-
-<hr>
 
 
 
 
 
+
+
+
+
+  <% @center.images.each do |image| %>
+    <%= image_tag image.url, class: "img-responsive center-image" %>
+      <% if current_user %>
+        <h6><%= link_to "Delete", "/images/#{image.id}", method: :delete, data:{confirm: "Are you sure?"} %></h6>
+      <% end %>
+  <% end %> 
+
+  <% if current_user %>
+      <h6><%= link_to "Add New Image", "/images/new" %></h6>
+  <% end %>
+
+  <h4>Ask a Question</h4>
+  <%= form_tag '/posts', method: :post do %>
+    <div>
+      <%= label_tag :Question %>
+      <%= text_field_tag :title %>
+    </div>
+    <%=hidden_field_tag :center_id, @center.id %>
+    <%= submit_tag "Submit" %>
+  <% end %>
+  <hr>
+
+  <h4>Questions</h4>
+
+  <% @center.posts.each do |post| %>
+    <%= post.title.capitalize %>
+    <%= form_tag '/comments', method: :post do %>
+    <div>
+      <%= label_tag :Answer %>
+      <%= text_field_tag :field %>
+    </div>
+    <%= submit_tag "Answer" %>
+  <% end %>
+    <br>
+  <% end %>
+
+  <h4>Add a Referral</h4>
+  <%= form_tag '/referrals', method: :post do %>
+    <div>
+      <%= label_tag :Feedback %>
+      <%= text_field_tag :description %>
+    </div>
+    <%=hidden_field_tag :center_id, @center.id %>
+    <%= submit_tag "Submit" %>
+  <% end %>
+  <hr>
+
+  <h4><%= @center.name.titleize %> Referrals <%= @center.referrals.length %></h4>
+  <% @center.referrals.each do |referral| %>
+    <%= referral.description.capitalize %><br>
+  <% end %>
+
+  <hr>
+
+
+
+
+
+
+</div>
