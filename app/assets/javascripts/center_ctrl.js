@@ -59,7 +59,7 @@
               '<div id="bodyContent">'+
               '<p><a href="'+center.website+'"">Company Website</a>' +
               '</p>'+
-              '<img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%= @center.description %>&key=AIzaSyDKyni-YC-myfYUxeOvMrNyx_TEf09FLAk" class="img-thumbnail" alt="Cinque Terre" width="200" height="200">'+
+              '<img src="https://bfb89515afffff903eb7a381cf5e58e24a620c1b-www.googledrive.com/host/0B09DNIgcGom_b1hxS2JnYXBiWFk/Drawing.png" alt="Logo" height="50" width="75"">'+
               '</div>'+
               '</div>';
 

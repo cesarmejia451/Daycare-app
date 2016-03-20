@@ -19,6 +19,8 @@ gem 'devise'
 gem 'thematic'
 gem 'figaro'
 gem 'font-awesome-rails'
+gem 'dotenv-rails'
+gem 'geocoder'
 
 gem 'unirest'
 # Use jquery as the JavaScript library

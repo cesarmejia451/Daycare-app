@@ -6,12 +6,20 @@
     <h4><%= @center.address %></h4>
     <h4><%= @center.city %>, <%= @center.state %></h4>
     <h4><%= @center.zip_code %></h4>
-    <h4><%= @center.phone %></h4>
+    <% if @center.phone.present? %>
+      <h4><%= @center.phone %></h4>
+    <% end %>
+
+    <h4><%= Geocoder::Calculations.distance_between([@center.latitude,@center.longitude], [41.8886,-87.6355]).round(3) %> miles</h4>
+
 
     <p hidden id="lat"><%= @center.latitude %></p>
     <p hidden id="lng"><%= @center.longitude %></p>
 
-    <h4><a href="<%= @center.website %>">Company Website</a></h4>
+
+    <% if @center.website.present? %>
+      <h4><a href="<%= @center.website %>">Company Website</a></h4>
+    <% end %>
     <hr>
     <h4>Programs: <% @center.programs.each do |program| %>
       <%= program.name.capitalize %>
@@ -19,7 +27,7 @@
     <hr>
 
     <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCq9Tx0RGOiVtBVGAZq8E1siFLAzplyWDo">
+    src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["INDEX_API"] %>">
     </script>
 
     <div ng-controller="centerCtrlShow" ng-init="setupShow()">
@@ -35,18 +43,29 @@
 
     <div id="map"></div>
 
+    <h4>Neighborhood</h4>
+    <% if @center.hours.present? %>
+      <%= @center.neighborhood %>
+    <% end %>
 
+    <h4><b>Image:</b></h4>
+    <% if @center.description.present? %>
+      <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%= @center.description %>&key=<%=@image_api%>" class="img-rounded" alt="Cinque Terre" width="400" height="400">
+    <% else %>
+      <img src="https://maps.googleapis.com/maps/api/streetview?size=400x400&location=<%= @center.latitude %>,<%= @center.longitude %>&heading=151.78&pitch=-0.76&key=<%=@image_street_api%>" class="img-rounded" alt="Cinque Terre">
+    <% end %>
 
-    <h4><b>Image: </b><img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%= @center.description %>&key=AIzaSyDKyni-YC-myfYUxeOvMrNyx_TEf09FLAk" class="img-rounded" alt="Cinque Terre" width="400" height="400"></h4>
 
     <h4><b>Hours:</b>
-
-
-
-    <% @center.hours.split(",").each do |hour| %>
-      <p><%= hour[2..-2].gsub(/"/, "") %></p>
+  
+    <% if @center.hours.present? %>
+      <%= @center.open_hours %>
+      <% @center.hours.split(",").each do |hour| %>
+        <p><%= hour[2..-2].gsub(/"/, "") %></p>
+      <% end %>
+    <% else %>
+      <%= "Please contact business directly for business hours" %>
     <% end %>
-    
 
     <hr>
     <% if current_user %>
@@ -54,14 +73,6 @@
       <h4>Action to Post a Review</h4>
     <% end %>
   </div>
-
-
-
-
-
-
-
-
 
   <% @center.images.each do |image| %>
     <%= image_tag image.url, class: "img-responsive center-image" %>
@@ -116,10 +127,5 @@
   <% end %>
 
   <hr>
-
-
-
-
-
 
 </div>

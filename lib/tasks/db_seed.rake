@@ -18,13 +18,20 @@ task create_daycare_db: :environment do
     end
 end
 
+count = 0
+token = ENV['PLACE_API']
+token_two = ENV['DETAILS_API']
+
 task update_daycare_db: :environment do 
   Center.all.each do |center|
+
+    count += 1
+    break if count > 2
+
     next unless center.latitude.present? && center.longitude.present?
 
     keyword = URI.encode(center.name)
-    location = Unirest.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{center.latitude},#{center.longitude}&keyword=#{keyword}&rankby=distance&key=AIzaSyA_avcWZehsC2QH_V83EZwjkg26NVptYmQ 
-")
+    location = Unirest.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{center.latitude},#{center.longitude}&keyword=#{keyword}&rankby=distance&key=#{token}")
     if(location.body["results"].empty?)
       next
     end
@@ -32,8 +39,7 @@ task update_daycare_db: :environment do
     place_id = location.body["results"].first["place_id"]
 
     if place_id.present?
-      place = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{place_id}&key=AIzaSyCAORTL2oMfcfEqz4ttarDXfrGhIOvDJL0  
-").body["result"] 
+      place = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{place_id}&key=#{token_two}").body["result"] 
       opening_hours = place["opening_hours"]
       weekday_text = opening_hours["weekday_text"] if opening_hours
 
@@ -57,37 +63,3 @@ task update_daycare_db: :environment do
   end
 end 
 
-task update_daycare_db_2: :environment do 
-  Center.all.each do |center|
-    next unless center.latitude.present? && center.longitude.present?
-
-    keyword = URI.encode(center.name)
-    location = Unirest.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{center.latitude},#{center.longitude}&keyword=#{keyword}%20chicago%20daycare&rankby=distance&key=AIzaSyCEqCLo4TVtpXq41YwGb36CKvG95gfvvw0")
-    if(location.body["results"].empty?)
-      next
-    end
-
-    place_id = location.body["results"].first["place_id"]
-
-    if place_id.present?
-      # fire request 2 to google with place id
-      place = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{place_id}&key=AIzaSyCEqCLo4TVtpXq41YwGb36CKvG95gfvvw0  
-").body["result"]
-
-      opening_hours = place["opening_hours"]
-      weekday_text = opening_hours["weekday_text"] if opening_hours
-      # do a similar check for presence
-      # center.update ....
-      center.update(
-        #add sad path
-        name: place["name"],
-        website: place["website"],
-        phone: place["formatted_phone_number"],
-        hours: weekday_text,
-        description: place["photos"]
-        )
-    else
-      next  
-    end
-  end
-end 
