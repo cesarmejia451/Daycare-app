@@ -18,7 +18,7 @@ gem 'devise'
 
 gem 'thematic'
 gem 'figaro'
-gem 'font-awesome-rails'
+gem 'font-awesome-rails', '~> 4.5', '>= 4.5.0.1'
 gem 'dotenv-rails'
 gem 'geocoder'
 

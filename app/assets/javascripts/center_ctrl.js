@@ -80,7 +80,11 @@
 
     $scope.setup = function(){
       $http.get('/centers.json').then(function(response){
-        $scope.centers = response.data;
+        if(window.centers){
+          $scope.centers = window.centers
+        }else {
+          $scope.centers = response.data;
+        }
         initMap()
       });
     };

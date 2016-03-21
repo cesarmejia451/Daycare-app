@@ -1,6 +1,7 @@
 class CentersController < ApplicationController
 
   def index
+    @zip_code_centers = params[:zip_code] ? Center.where("name LIKE ? OR zip_code LIKE ?", "%#{params[:zip_code]}%", "%#{params[:zip_code]}%") : nil
     @centers = Center.all
 
     if params[:program]
@@ -29,5 +30,6 @@ class CentersController < ApplicationController
      @centers = Center.where("name LIKE ? OR zip_code LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
      render json: @centers
   end
+
 end
 

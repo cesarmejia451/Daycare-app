@@ -184,7 +184,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   figaro
-  font-awesome-rails
+  font-awesome-rails (~> 4.5, >= 4.5.0.1)
   geocoder
   jbuilder (~> 2.0)
   jquery-rails

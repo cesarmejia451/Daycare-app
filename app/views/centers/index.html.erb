@@ -2,31 +2,34 @@
 src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["INDEX_API"] %>">
 </script>
 
+<script type="text/javascript">
+  window.centers = <%= @zip_code_centers.to_json.html_safe %>
+  
+</script>
+
 <div ng-controller="centerCtrl" ng-init="setup()">
   <%= render "shared/header" %>
-
-  <input type="text" >
-  <button > Search </button>
-    
   <style>
     #map {
       height: 700px;
-      width: 1075px;
-      margin: 100px;
+      width: 1000px;
+      margin-top: 70px;
+      margin-bottom: 25px;
+      margin-right: 125px;
+      margin-left: 125px;
       padding: 25px;
     }
   </style>
 
   <div id="map"></div>
-
+  <hr>
 
   <div ng-repeat="center in centers">
     <h4><a href="centers/{{center.id}}">{{center.business_name || center.name}}</a></h4>
     <h5>{{center.address}}</h5>
-    <h5>{{center.city}}, {{center.state}}</h5>
-    <h5>{{center.zip_code}}</h5>
-    <h5>{{center.latitude}}</h5>
-    <h5>{{center.longitude}}</h5>
+    <h5>{{center.city}}, {{center.state}} {{center.zip}}</h5>
+    <h5></h5>
+  
     <hr>
   </div>
 

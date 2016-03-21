@@ -38,6 +38,8 @@
  *= require theme/footer-v7.css
  *= require theme/footer-v8.css
 
+ *= require font-awesome
+
  *= require_tree .
  *= require_self
  */
