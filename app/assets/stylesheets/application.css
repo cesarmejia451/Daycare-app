@@ -37,6 +37,10 @@
  *= require theme/footer-v6.css
  *= require theme/footer-v7.css
  *= require theme/footer-v8.css
+ *= require theme/profile.css
+ *= require theme/blocks.css
+ *= require theme/portfolio-v1.css
+
 
  *= require font-awesome
 

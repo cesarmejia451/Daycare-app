@@ -13,10 +13,10 @@ src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["INDEX_API"] %>">
     #map {
       height: 700px;
       width: 1000px;
-      margin-top: 70px;
+      margin-top: 25px;
       margin-bottom: 25px;
-      margin-right: 125px;
-      margin-left: 125px;
+      margin-right: 25px;
+      margin-left: 25px;
       padding: 25px;
     }
   </style>
@@ -24,13 +24,34 @@ src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["INDEX_API"] %>">
   <div id="map"></div>
   <hr>
 
-  <div ng-repeat="center in centers">
+
+  <div class="container content-sm">
+    <div class="row">
+      <div ng-repeat="center in centers">
+        <div class="col-md-4">
+          <div class="view view-tenth">
+            <img class="img-responsive" src="https://bfb89515afffff903eb7a381cf5e58e24a620c1b-www.googledrive.com/host/0B09DNIgcGom_b1hxS2JnYXBiWFk/daycareimg.jpg" alt=""/>
+            <div class="mask">
+              <h3>{{center.business_name || center.name}}</h6>
+              <h6>{{center.address}}</h5>
+              <h6>{{center.city}}, {{center.state}}</h6>
+              <h6>{{center.zip}}</h6>
+              <a href="centers/{{center.id}}" class="info">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div><!--/row-->
+    </div>
+  </div>
+
+  <!-- <div ng-repeat="center in centers">
     <h4><a href="centers/{{center.id}}">{{center.business_name || center.name}}</a></h4>
     <h5>{{center.address}}</h5>
     <h5>{{center.city}}, {{center.state}} {{center.zip}}</h5>
     <h5></h5>
   
     <hr>
-  </div>
+  </div> -->
 
 </div>
+
