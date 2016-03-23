@@ -4,7 +4,6 @@ src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["INDEX_API"] %>">
 
 <script type="text/javascript">
   window.centers = <%= @zip_code_centers.to_json.html_safe %>
-  
 </script>
 
 <div ng-controller="centerCtrl" ng-init="setup()">
@@ -16,20 +15,20 @@ src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["INDEX_API"] %>">
       margin-top: 25px;
       margin-bottom: 25px;
       margin-right: 25px;
-      margin-left: 25px;
+      margin-left: 115px;
       padding: 25px;
     }
   </style>
 
-  <div id="map"></div>
-  <hr>
+<div id="map"></div>
+<hr>
 
 
   <div class="container content-sm">
     <div class="row">
       <div ng-repeat="center in centers">
         <div class="col-md-4">
-          <div class="view view-tenth">
+          <div class="view view-tenth">          
             <img class="img-responsive" src="https://bfb89515afffff903eb7a381cf5e58e24a620c1b-www.googledrive.com/host/0B09DNIgcGom_b1hxS2JnYXBiWFk/daycareimg.jpg" alt=""/>
             <div class="mask">
               <h3>{{center.business_name || center.name}}</h6>

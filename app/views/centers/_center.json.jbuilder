@@ -8,6 +8,7 @@ json.id center.id
   json.website center.website
   json.latitude center.latitude
   json.longitude center.longitude
+  json.image center.description
 
 
 

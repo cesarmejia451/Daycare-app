@@ -52,10 +52,11 @@
         }
         (function(m) {
           if(m){
+            var name = center.business_name || center.name;
              var contentString = '<div id="content">'+
               '<div id="siteNotice">'+
               '</div>'+
-              '<h4 id="firstHeading" class="firstHeading"><a href="centers/'+center.id+'">'+center.business_name+'</h4>'+
+              '<h4 id="firstHeading" class="firstHeading"><a href="centers/'+center.id+'">'+ name +'</h4>'+
               '<div id="bodyContent">'+
               '<p><a href="'+center.website+'"">Company Website</a>' +
               '</p>'+

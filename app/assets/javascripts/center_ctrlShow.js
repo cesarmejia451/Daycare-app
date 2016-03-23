@@ -17,7 +17,6 @@
         icon: image,
         title: "Daycare Playground"
       });
-
     };
 
     function initMapShow(){

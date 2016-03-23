@@ -4,6 +4,7 @@ class CentersController < ApplicationController
     @zip_code_centers = params[:zip_code] ? Center.where("name LIKE ? OR zip_code LIKE ?", "%#{params[:zip_code]}%", "%#{params[:zip_code]}%") : nil
     @centers = Center.all
 
+
     if params[:program]
       @centers = Program.find_by(name: params[:program]).centers
     end
@@ -16,7 +17,12 @@ class CentersController < ApplicationController
     @geocode_api = ENV["GEOCODE_API"]
     @hours_api = ENV["HOURS_API"]
 
+    begin
+
     @users_location = Geocoder.search("173.208.66.199").first 
+
+    rescue
+    end
     
   end
 

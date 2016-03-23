@@ -20,78 +20,49 @@
 
         <p hidden id="lat"><%= @center.latitude %></p>
         <p hidden id="lng"><%= @center.longitude %></p>
-
-        <p><h5><i class="fa fa-car fa-3x"></i> <%= Geocoder::Calculations.distance_between([@center.latitude,@center.longitude], [41.8886,-87.6355]).round(3) %> miles from your current location.</h5></p><br />
+     
+        <div class="miles">
+          <p><h5><i class="fa fa-car fa-3x"></i> <%= Geocoder::Calculations.distance_between([@center.latitude,@center.longitude], [41.8886,-87.6355]).round(3) %> miles from your current location.</h5></p><br />
+        </div>
 
         <div class="panel panel-profile">
           <div class="panel-heading overflow-h">
-            <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments"></i><%= @center.name.titleize %> Referrals <%= @center.referrals.length %></h2>
+            <h2 class="panel-title heading-sm pull-left">
+            <i class="fa fa-comments"></i><%= @center.name.titleize %> Referrals</h2>
             <a href="#"><i class="fa fa-cog pull-right"></i></a>
           </div>
           <div class="panel-body margin-bottom-50">
             <div class="media media-v2">
-              <a class="pull-left" href="#">
-                <img class="media-object" src="https://bfb89515afffff903eb7a381cf5e58e24a620c1b-www.googledrive.com/host/0B09DNIgcGom_b1hxS2JnYXBiWFk/Drawing.png" alt="Logo" height="50" width="75">
-              </a>
-              <div class="media-body">
-                <h4 class="media-heading">
-                <% @center.referrals.each do |referral| %>
-                    <strong>Mike</strong><small> Two weeks ago</small>
-                  </h4>
-                  <p><%= referral.description.capitalize %></p>
-                  <ul class="list-inline results-list pull-left">
-                    <li><a href="#">25 Likes</a></li>
-                    <li><a href="#">10 Share</a></li>
-                  </ul>
-                  <ul class="list-inline pull-right">
-                    <li><a href="#"><i class="expand-list rounded-x fa fa-reply"></i></a></li>
-                    <li><a href="#"><i class="expand-list rounded-x fa fa-heart"></i></a></li>
-                    <li><a href="#"><i class="expand-list rounded-x fa fa-retweet"></i></a></li>
-                  </ul>
-                <% end %>
-              </div>
+              <% @center.referrals.each do |referral| %>
+                <a class="pull-left" href="#">
+                  <img class="media-object" src="https://bfb89515afffff903eb7a381cf5e58e24a620c1b-www.googledrive.com/host/0B09DNIgcGom_b1hxS2JnYXBiWFk/Drawing.png" alt="Logo" height="50" width="75">
+                </a>
+                <div class="media-body">
+                  <h4 class="media-heading">
+                      <strong>Carol</strong><small> Two weeks ago</small></h4>
+                    <p><%= referral.description.capitalize %></p>
+                    <ul class="list-inline results-list pull-left">
+                      <li><a href="#">25 Likes</a></li>
+                    </ul>
+                    <ul class="list-inline pull-right">
+                      <li><a href="#"><i class="expand-list rounded-x fa fa-reply"></i></a></li>
+                      <li><a href="#"><i class="expand-list rounded-x fa fa-heart"></i></a></li>
+                      <li><a href="#"><i class="expand-list rounded-x fa fa-retweet"></i></a></li>
+                    </ul>
+                </div>
+           <% end %>
             </div><!--/end media media v2-->
-            <button type="button" class="btn-u btn-u-default btn-block">Load More</button>
+            <% if @center.referrals.length == 1 %>
+              <button type="button" class="btn-u btn-u-default btn-block"><i class="fa fa-child"></i> <%= @center.referrals.length %> Referral <i class="fa fa-child"></i></button>
+            <% else @center.referrals.length >= 2 %>
+              <button type="button" class="btn-u btn-u-default btn-block"><i class="fa fa-child"></i> <%= @center.referrals.length %> Referrals <i class="fa fa-child"></i></button>
+            <% end %>
+
           </div>
         </div>
+   
 
-        <!-- <form action="assets/php/sky-forms-pro/demo-contacts-process.php" method="post" id="sky-form3" class="sky-form contact-style">
-          <fieldset class="no-padding">
-            <label>Name <span class="color-red">*</span></label>
-            <div class="row sky-space-20">
-              <div class="col-md-7 col-md-offset-0">
-                <div>
-                  <input type="text" name="name" id="name" class="form-control">
-                </div>
-              </div>
-            </div>
-
-            <label>Email <span class="color-red">*</span></label>
-            <div class="row sky-space-20">
-              <div class="col-md-7 col-md-offset-0">
-                <div>
-                  <input type="text" name="email" id="email" class="form-control">
-                </div>
-              </div>
-            </div>
-
-            <label>Message <span class="color-red">*</span></label>
-            <div class="row sky-space-20">
-              <div class="col-md-11 col-md-offset-0">
-                <div>
-                  <textarea rows="8" name="message" id="message" class="form-control"></textarea>
-                </div>
-              </div>
-            </div>
-
-            <p><button type="submit" class="btn-u">Send Message</button></p>
-          </fieldset>
-
-          <div class="message">
-            <i class="rounded-x fa fa-check"></i>
-            <p>Your message was successfully sent!</p>
-          </div>
-        </form> -->
+     
       </div><!--/col-md-9-->
 
       <div class="col-md-3 info-boxes">
@@ -139,10 +110,23 @@
           <% if @center.description.present? %>
             <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%= @center.description %>&key=<%=@image_api%>" class="img-rounded" alt="Cinque Terre" width="250" height="200">
           <% else %>
-            <img src="https://maps.googleapis.com/maps/api/streetview?size=200x250&location=<%= @center.latitude %>,<%= @center.longitude %>&heading=151.78&pitch=-0.76&key=<%=@image_street_api%>" class="img-rounded" alt="Cinque Terre">
+            <img src="https://maps.googleapis.com/maps/api/streetview?size=200x250&location=<%= @center.latitude %>,<%= @center.longitude %>&heading=151.78&pitch=-0.76&key=<%=@image_street_api%>" class="img-rounded" alt="Cinque Terre" width="250" height="200">
           <% end %>
           <% if current_user %>
               <h6><%= link_to "Add New Image", "/images/new" %></h6>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="col-md-3 info-boxes"> 
+        <div class="headline"><h2>Add a Referral</h2></div>
+        <ul class="list-unstyled margin-bottom-30">
+          <%= form_tag '/referrals', method: :post do %>
+            <div>
+              <%= text_area_tag :description, "" ,class: "referral-form", placeholder: "Feedback" %>
+            </div>
+            <%=hidden_field_tag :center_id, @center.id %>
+            <%= submit_tag "Submit", class: "btn feedback-button" %>
           <% end %>
         </ul>
       </div>
@@ -190,11 +174,8 @@
       <% end %>
   <% end %> 
 
-  <% if current_user %>
-      <h6><%= link_to "Add New Image", "/images/new" %></h6>
-  <% end %>
 
-  <h4>Ask a Question</h4>
+<!--   <h4>Ask a Question</h4>
   <%= form_tag '/posts', method: :post do %>
     <div>
       <%= label_tag :Question %>
@@ -203,23 +184,18 @@
     <%=hidden_field_tag :center_id, @center.id %>
     <%= submit_tag "Submit" %>
   <% end %>
-  <hr>
+  <hr> -->
 
-  <h4>Questions</h4>
+
 
   <% @center.posts.each do |post| %>
     <%= post.title.capitalize %>
     <%= form_tag '/comments', method: :post do %>
-    <div>
-      <%= label_tag :Answer %>
-      <%= text_field_tag :field %>
-    </div>
-    <%= submit_tag "Answer" %>
-  <% end %>
+    <% end %>
     <br>
   <% end %>
 
-  <h4>Add a Referral</h4>
+ <!--  <h4>Add a Referral</h4>
   <%= form_tag '/referrals', method: :post do %>
     <div>
       <%= label_tag :Feedback %>
@@ -228,8 +204,8 @@
     <%=hidden_field_tag :center_id, @center.id %>
     <%= submit_tag "Submit" %>
   <% end %>
-  <hr>
+  <hr> -->
 
-]]
+
 
 </div>

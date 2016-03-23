@@ -31,3 +31,41 @@
 .container.content.outline {
   padding-right: 50px;
 }
+
+.panel-title {
+  color: #E35F5F;
+}
+
+.panel {
+  -webkit-box-shadow: 7px 7px 69px -11px rgba(227,95,95,1);
+  -moz-box-shadow: 7px 7px 69px -11px rgba(227,95,95,1);
+  box-shadow: 7px 7px 69px -11px rgba(227,95,95,1);
+}
+
+.miles {
+  -webkit-box-shadow: 7px 7px 69px -11px rgba(227,95,95,1);
+  -moz-box-shadow: 7px 7px 69px -11px rgba(227,95,95,1);
+  box-shadow: 7px 7px 69px -11px rgba(227,95,95,1);
+  margin-bottom: 10px;
+  padding-left: 25px;
+  padding-top: 10px;
+  color: #E35F5F;
+
+}
+
+.feedback-button {
+  background-color: #e35f5f;
+  color: white;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.referral-form {
+  height: 120px;
+  width: 90%;
+  border: solid 2px #e35f5f;
+  padding: 3px;
+}
+
+.pull-right {
+}
