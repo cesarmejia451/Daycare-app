@@ -65,71 +65,77 @@
      
       </div><!--/col-md-9-->
 
-      <div class="col-md-3 info-boxes">
-        <div class="headline"><h2>Contact</h2></div>
-        <ul class="list-unstyled who margin-bottom-30">
-          <li><i class="fa fa-home"></i><%= @center.address %></li>
-          <li><i class="fa fa-home"></i><%= @center.city %>, <%= @center.state %> <%= @center.zip_code %></li>
-          <% if @center.phone.present? %>
-            <li><i class="fa fa-phone"></i><%= @center.phone %></li>
-          <% end %>
-          <% if @center.website.present? %>
-            <li><a href="<%= @center.website %>"><i class="fa fa-globe"></i>Company Website</a></li>
-          <% end %>
-        </ul>
-      </div>
-
-    
-      <div class="col-md-3 info-boxes"> 
-        <div class="headline"><h2>Business Hours</h2></div>
-        <ul class="list-unstyled margin-bottom-30">
-          <% if @center.hours.present? %>
-            <li><i class="fa fa-child"></i><strong> <%= @center.open_hours %></strong></li>
-            <% @center.hours.split(",").each do |hour| %>
-              <li><%= hour[2..-2].gsub(/"/, "") %></li>
+        <div class="col-md-3 info-boxes">
+          <div class="headline"><h2>Contact</h2></div>
+          <ul class="list-unstyled who margin-bottom-30">
+            <li><i class="fa fa-home"></i><%= @center.address %></li>
+            <li><i class="fa fa-home"></i><%= @center.city %>, <%= @center.state %> <%= @center.zip_code %></li>
+            <% if @center.phone.present? %>
+              <li><i class="fa fa-phone"></i><%= @center.phone %></li>
             <% end %>
-          <% else %>
-            <%= "Please contact business directly for business hours" %>
-          <% end %>
-        </ul>
-      </div>
-     
-      <div class="col-md-3 info-boxes">
-        <div class="headline"><h2>Programs</h2></div>
-        <p>Please call the business directly for specific details about rates and programs at the center.</p>
-        <ul class="list-unstyled">
-          <% @center.programs.each do |program| %>
-            <li><i class="fa fa-child"></i> <%= program.name.capitalize %></li>
-          <% end %>
-        </ul>
-      </div>
+            <% if @center.website.present? %>
+              <li><a href="<%= @center.website %>"><i class="fa fa-globe"></i>Company Website</a></li>
+            <% end %>
+          </ul>
+        </div>
+      
+        <div class="col-md-3 info-boxes"> 
+          <div class="headline"><h2>Business Hours</h2></div>
+          <ul class="list-unstyled margin-bottom-30">
+            <% if @center.hours.present? %>
+              <li><i class="fa fa-child"></i><strong> <%= @center.open_hours %></strong></li>
+              <% @center.hours.split(",").each do |hour| %>
+                <li><%= hour[2..-2].gsub(/"/, "") %></li>
+              <% end %>
+            <% else %>
+              <%= "Please contact business directly for business hours" %>
+            <% end %>
+          </ul>
+        </div>
+  
+        <div class="col-md-3 info-boxes">
+          <div class="headline"><h2>Programs</h2></div>
+          <p>Please call the business directly for specific details about rates and programs at the center.</p>
+          <ul class="list-unstyled">
+            <% @center.programs.each do |program| %>
+              <li><i class="fa fa-child"></i> <%= program.name.capitalize %></li>
+            <% end %>
+          </ul>
+        </div>
 
-      <div class="col-md-3 info-boxes">
-        <div class="headline"><h2>Images</h2></div>
-        <ul class="list-unstyled">
-          <% if @center.description.present? %>
-            <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%= @center.description %>&key=<%=@image_api%>" class="img-rounded" alt="Cinque Terre" width="250" height="200">
-          <% else %>
-            <img src="https://maps.googleapis.com/maps/api/streetview?size=200x250&location=<%= @center.latitude %>,<%= @center.longitude %>&heading=151.78&pitch=-0.76&key=<%=@image_street_api%>" class="img-rounded" alt="Cinque Terre" width="250" height="200">
-          <% end %>
-          <% if current_user %>
-              <h6><%= link_to "Add New Image", "/images/new" %></h6>
-          <% end %>
-        </ul>
-      </div>
+        <div class="col-md-3 info-boxes">
+          <div class="headline"><h2>Images</h2></div>
+          <ul class="list-unstyled">
+            <% if @center.description.present? %>
+              <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%= @center.description %>&key=<%=@image_api%>" class="img-rounded" alt="Cinque Terre" width="250" height="200">
+            <% else %>
+              <img src="https://maps.googleapis.com/maps/api/streetview?size=200x250&location=<%= @center.latitude %>,<%= @center.longitude %>&heading=151.78&pitch=-0.76&key=<%=@image_street_api%>" class="img-rounded" alt="Cinque Terre" width="250" height="200">
+            <% end %>
+            <% if current_user %>
+                <h6><%= link_to "Add New Image", "/images/new" %></h6>
+            <% end %>
+          </ul>
+        </div>
 
-      <div class="col-md-3 info-boxes"> 
-        <div class="headline"><h2>Add a Referral</h2></div>
-        <ul class="list-unstyled margin-bottom-30">
-          <%= form_tag '/referrals', method: :post do %>
-            <div>
-              <%= text_area_tag :description, "" ,class: "referral-form", placeholder: "Feedback" %>
-            </div>
-            <%=hidden_field_tag :center_id, @center.id %>
-            <%= submit_tag "Submit", class: "btn feedback-button" %>
-          <% end %>
-        </ul>
-      </div>
+        <div class="col-md-3 info-boxes"> 
+          <div class="headline"><h2>Add Referral</h2></div>
+          <ul class="list-unstyled margin-bottom-30">
+            <% if current_user %>
+              <%= form_tag '/referrals', method: :post do %>
+                <div>
+                  <%= text_area_tag :description, "" ,class: "referral-form", placeholder: "Feedback" %>
+                </div>
+                <%=hidden_field_tag :center_id, @center.id %>
+                <%= submit_tag "Submit", class: "btn feedback-button" %>
+              <% end %>
+            <% else %>
+              <h6>Please sign-in/sign-up to leave a referral</h6>
+              <li><%= link_to "Sign Up", "/users/sign_up" unless user_signed_in? %></li>
+              <!-- <li class="topbar-devider"></li> -->
+              <li><%= link_to "Sign In", "/users/sign_in" unless user_signed_in? %></li>
+            <% end %>
+          </ul>
+        </div>
     </div>
   </div>
 
@@ -157,8 +163,8 @@
     <div ng-controller="centerCtrlShow" ng-init="setupShow()">
       <style>
         #map {
-          height: 480px;
-          width: 705px;
+          height: 500px;
+          width: 755px;
           margin-top: 0px;
           margin: 25px;
           padding-top: 0px;
