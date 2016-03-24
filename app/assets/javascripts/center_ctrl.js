@@ -33,13 +33,154 @@
       });
 
       var styles = [
+
           {
-            stylers: [
-              { hue: "#00ffe6" },
-              { saturation: -20 }
-            ]
-          }
-        ];
+                  "featureType": "all",
+                  "elementType": "geometry",
+                  "stylers": [
+                      {
+                          "color": "#63b5e5"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "all",
+                  "elementType": "geometry.fill",
+                  "stylers": [
+                      {
+                          "visibility": "on"
+                      },
+                      {
+                          "hue": "#ff2000"
+                      },
+                      {
+                          "saturation": "0"
+                      },
+                      {
+                          "gamma": "1.36"
+                      },
+                      {
+                          "weight": "0.01"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "all",
+                  "elementType": "geometry.stroke",
+                  "stylers": [
+                      {
+                          "color": "#cccccc"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "all",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                      {
+                          "gamma": 0.01
+                      },
+                      {
+                          "lightness": 20
+                      }
+                  ]
+              },
+              {
+                  "featureType": "all",
+                  "elementType": "labels.text.stroke",
+                  "stylers": [
+                      {
+                          "saturation": -31
+                      },
+                      {
+                          "lightness": -33
+                      },
+                      {
+                          "weight": 2
+                      },
+                      {
+                          "gamma": 0.8
+                      }
+                  ]
+              },
+              {
+                  "featureType": "all",
+                  "elementType": "labels.icon",
+                  "stylers": [
+                      {
+                          "visibility": "off"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "landscape",
+                  "elementType": "geometry",
+                  "stylers": [
+                      {
+                          "lightness": 30
+                      },
+                      {
+                          "saturation": 30
+                      }
+                  ]
+              },
+              {
+                  "featureType": "poi",
+                  "elementType": "geometry",
+                  "stylers": [
+                      {
+                          "saturation": 20
+                      }
+                  ]
+              },
+              {
+                  "featureType": "poi.park",
+                  "elementType": "geometry",
+                  "stylers": [
+                      {
+                          "lightness": 20
+                      },
+                      {
+                          "saturation": -20
+                      }
+                  ]
+              },
+              {
+                  "featureType": "road",
+                  "elementType": "geometry",
+                  "stylers": [
+                      {
+                          "lightness": 10
+                      },
+                      {
+                          "saturation": -30
+                      }
+                  ]
+              },
+              {
+                  "featureType": "road",
+                  "elementType": "geometry.stroke",
+                  "stylers": [
+                      {
+                          "saturation": 25
+                      },
+                      {
+                          "lightness": 25
+                      }
+                  ]
+              },
+              {
+                  "featureType": "water",
+                  "elementType": "all",
+                  "stylers": [
+                      {
+                          "lightness": -15
+                      }
+                  ]
+              }
+      ];
+
+      map.setOptions({styles: styles});
 
 
       var bounds = new google.maps.LatLngBounds();
@@ -142,12 +283,12 @@
               maxWidth: 200
             });
 
-            m.addListener('mouseover', function() {
+            m.addListener('click', function() {
               infowindow.open(map, m);
             });
-            m.addListener('click', function() {
-              infowindow.close(map, m);
-            });
+            // m.addListener('mousedown', function() {
+            //   infowindow.close(map, m);
+            // });
             
           }
         }(marker))

@@ -95,10 +95,13 @@
   
         <div class="col-md-3 info-boxes">
           <div class="headline"><h2>Programs</h2></div>
-          <p>Please call the business directly for specific details about rates and programs at the center.</p>
           <ul class="list-unstyled">
-            <% @center.programs.each do |program| %>
+            <% if @center.programs.present? %>
+              <% @center.programs.each do |program| %>
               <li><i class="fa fa-child"></i> <%= program.name.capitalize %></li>
+              <% end %>
+            <% else %>
+              <p>Please call the business directly for specific details about rates and programs at the center.</p>
             <% end %>
           </ul>
         </div>
@@ -173,12 +176,12 @@
       </style>
     </div>
 
-  <% @center.images.each do |image| %>
+ <!--  <% @center.images.each do |image| %>
     <%= image_tag image.url, class: "img-responsive center-image" %>
       <% if current_user %>
         <h6><%= link_to "Delete", "/images/#{image.id}", method: :delete, data:{confirm: "Are you sure?"} %></h6>
       <% end %>
-  <% end %> 
+  <% end %>  -->
 
 
 <!--   <h4>Ask a Question</h4>
