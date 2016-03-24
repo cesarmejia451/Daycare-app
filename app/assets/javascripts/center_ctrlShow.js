@@ -49,7 +49,7 @@
                           "visibility": "on"
                       },
                       {
-                          "hue": "#ff2000"
+                          "hue": "#6ca0dc"
                       },
                       {
                           "saturation": "0"

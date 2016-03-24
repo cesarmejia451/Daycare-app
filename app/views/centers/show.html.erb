@@ -42,7 +42,7 @@
                       <strong>Carol</strong><small> Two weeks ago</small></h4>
                     <p><%= referral.description.capitalize %></p>
                     <ul class="list-inline results-list pull-left">
-                      <li><a href="#">25 Likes</a></li>
+                      <li><a href="#">2 Likes</a></li>
                     </ul>
                     <ul class="list-inline pull-right">
                       <li><a href="#"><i class="expand-list rounded-x fa fa-reply"></i></a></li>
@@ -88,7 +88,7 @@
                 <li><%= hour[2..-2].gsub(/"/, "") %></li>
               <% end %>
             <% else %>
-              <%= "Please contact business directly for business hours" %>
+              <%= "Please contact the center for business hours." %>
             <% end %>
           </ul>
         </div>
@@ -101,7 +101,7 @@
               <li><i class="fa fa-child"></i> <%= program.name.capitalize %></li>
               <% end %>
             <% else %>
-              <p>Please call the business directly for specific details about rates and programs at the center.</p>
+              <p>Please call the center directly for specific details about rates and programs.</p>
             <% end %>
           </ul>
         </div>
@@ -166,7 +166,7 @@
     <div ng-controller="centerCtrlShow" ng-init="setupShow()">
       <style>
         #map {
-          height: 500px;
+          height: 650px;
           width: 755px;
           margin-top: 0px;
           margin: 25px;

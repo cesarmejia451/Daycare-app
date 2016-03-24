@@ -140,7 +140,7 @@ body.header-fixed-space-default {
 /*Navbar*/
 .header {
 	z-index: 99;
-	background: #D78080;
+	background: #e3c1c1;
 	position: relative;
 	border-bottom: solid 2px #eee;
 }
