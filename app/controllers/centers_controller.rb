@@ -33,7 +33,7 @@ class CentersController < ApplicationController
   end
 
   def api_search
-     @centers = Center.where("name LIKE ? OR zip_code LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+     @centers = Center.where("name LIKE ? OR zip_code LIKE ? OR neighborhood LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
      render json: @centers
   end
 

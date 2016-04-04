@@ -4,10 +4,7 @@
   <div class="breadcrumbs-v3 img-v1">
       <div class="container text-center">
         <h1><%= @center.name %></h1>
-        <% if @center.hours.present? %>
-          <%= @center.neighborhood %>
-        <% end %>
-        <p><h4><%= @center.city %>, <%= @center.state %></h4></p>
+        <h4><%= @center.neighborhood %></h4>
       </div><!--/end container-->
   </div>
 
@@ -39,7 +36,7 @@
                 </a>
                 <div class="media-body">
                   <h4 class="media-heading">
-                      <strong>Carol</strong><small> Two weeks ago</small></h4>
+                      <strong>Carol M.</strong><small> Two weeks ago</small></h4>
                     <p><%= referral.description.capitalize %></p>
                     <ul class="list-inline results-list pull-left">
                       <li><a href="#">2 Likes</a></li>

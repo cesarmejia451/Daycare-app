@@ -25,8 +25,8 @@ token_two = ENV['DETAILS_API']
 task update_daycare_db: :environment do 
   Center.all.each do |center|
 
-    count += 1
-    break if count > 2
+    # count += 1
+    # break if count > 2
 
     next unless center.latitude.present? && center.longitude.present?
 
@@ -59,6 +59,25 @@ task update_daycare_db: :environment do
       # puts "#{result}: #{center.id}"
     else
       next  
+    end
+  end
+end 
+
+token_three = ENV['GEOCODE_API']
+
+task update_neighborhood: :environment do
+  Center.all.each do |center|
+    hood = Unirest.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=#{center.latitude},#{center.longitude}&location_type=APPROXIMATE&result_type=political&key=#{token_three}")
+    if(hood.body["results"].empty?)
+      next
+    else
+      hood_find = hood.body["results"].first
+      results = hood_find["address_components"].first
+      name = results["long_name"] 
+
+      center.update(
+        neighborhood: name,
+        )
     end
   end
 end 

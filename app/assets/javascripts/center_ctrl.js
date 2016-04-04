@@ -26,9 +26,9 @@
     };
 
     function initMap(){
-      var chicago = {lat: 41.8405, lng: -87.6750};
+      var chicago = {lat: 41.8905, lng: -87.6750};
       map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 11,
+        zoom: 12,
         center: chicago
       });
 

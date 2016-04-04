@@ -9,6 +9,8 @@ json.id center.id
   json.latitude center.latitude
   json.longitude center.longitude
   json.image center.description
+  json.neighborhood center.neighborhood
+
 
 
 

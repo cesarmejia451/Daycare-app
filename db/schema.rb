@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306204642) do
+ActiveRecord::Schema.define(version: 20160330144130) do
 
   create_table "center_programs", force: :cascade do |t|
     t.integer  "center_id",  limit: 4
@@ -21,20 +21,21 @@ ActiveRecord::Schema.define(version: 20160306204642) do
   end
 
   create_table "centers", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.string   "address",     limit: 255
-    t.string   "city",        limit: 255
-    t.string   "state",       limit: 255
-    t.string   "website",     limit: 255
-    t.string   "zip_code",    limit: 255
-    t.string   "phone",       limit: 255
-    t.text     "description", limit: 65535
-    t.text     "hours",       limit: 65535
-    t.string   "rates",       limit: 255
+    t.string   "name",         limit: 255
+    t.string   "address",      limit: 255
+    t.string   "city",         limit: 255
+    t.string   "state",        limit: 255
+    t.string   "website",      limit: 255
+    t.string   "zip_code",     limit: 255
+    t.string   "phone",        limit: 255
+    t.text     "description",  limit: 65535
+    t.text     "hours",        limit: 65535
+    t.string   "rates",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "latitude",    limit: 24
-    t.float    "longitude",   limit: 24
+    t.float    "latitude",     limit: 24
+    t.float    "longitude",    limit: 24
+    t.text     "neighborhood", limit: 65535
   end
 
   create_table "comments", force: :cascade do |t|

@@ -29,17 +29,19 @@ class Center < ActiveRecord::Base
     end
   end   
 
-  def neighborhood
-    hood = Unirest.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=#{latitude},#{longitude}&key=#{ENV["GEOCODE_API"]}")
+  # def neighborhood
+  #   hood = Unirest.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=#{latitude},#{longitude}&key=#{ENV["GEOCODE_API"]}")
 
-    if(hood.body["results"].empty?)
-      p ""
-    else
-      hood_find = hood.body["results"].fifth
-      results = hood_find["address_components"].first
-      name = results["long_name"] 
-    end
-  end 
+  #   hood = Unirest.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=#{latitude},#{longitude}&location_type=APPROXIMATE&result_type=political&key=#{ENV["GEOCODE_API"]}")
+
+  #   if(hood.body["results"].empty?)
+  #     p ""
+  #   else
+  #     hood_find = hood.body["results"].first
+  #     results = hood_find["address_components"].first
+  #     name = results["long_name"] 
+  #   end
+  # end 
 
   def random_image
 
